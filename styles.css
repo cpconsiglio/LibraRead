@@ -1,0 +1,21 @@
+body {
+    background-color: #e3e8ff;
+}
+
+.title {
+    font-size: 300%;
+    font-family: 'Courier', Courier, monospace;
+    font-weight: normal;
+}
+
+.menu-btn:hover {
+    background-color: #e6d21e;
+}
+
+.menu-btn {
+    background-color: #151942;
+    color: white;
+    transition-duration: 0.1s;
+    font-family: monospace;
+    font-weight: lighter;
+}

@@ -1,0 +1,29 @@
+.shelf-bar {
+    background-color:azure;
+}
+
+.shelf-btn {
+    transition-duration: 0.1s;
+    background-color: #c7c5c2;
+}
+
+.shelf-btn:hover {
+    background-color: #151942;
+}
+
+.instruction {
+    color: gray;
+}
+
+.continue-btn {
+    visibility: hidden;
+    background-color: #0d113d;
+    color: white;
+    font-family: 'Courier', Courier, monospace;
+    font-weight: normal;
+}
+
+.continue-btn:hover {
+    background-color: #2270d6;
+    color: black;
+}

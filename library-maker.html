@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>LibraRead</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="library-maker.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h2 class="instruction">Choose your shelf</h2>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <img src="" class="img-fluid" id="chosen-shelf"/>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <a id="continue-btn" type="button" class="continue-btn btn border border-dark" href="/book-upload.html" role="button"><h2>Continue</h2></a>
+            </div>
+        </div>
+        <div class="shelf-bar row border-top border-dark fixed-bottom justify-content-center">
+            <div class="col-2">
+                <button id="shelf-images/shelf-brown.png" onclick="select_shelf(this.id)" type="button" class="shelf-btn btn m-2 w-100 rounded-0 border border-dark" role="button"><img src="shelf-images/shelf-brown.png" class="w-75"/></button>
+            </div>
+            <div class="col-2">
+                <button id="shelf-images/shelf-green.png" onclick="select_shelf(this.id)" type="button" class="shelf-btn btn m-2 w-100 rounded-0 border border-dark" role="button"><img src="shelf-images/shelf-green.png" class="w-75"/></button>
+            </div>
+            <div class="col-2">
+                <button id="shelf-images/shelf-olive.png" onclick="select_shelf(this.id)"  type="button" class="shelf-btn btn m-2 w-100 rounded-0 border border-dark" role="button"><img src="shelf-images/shelf-olive.png" class="w-75"/></button>
+            </div>
+            <div class="col-2">
+                <button id="shelf-images/shelf-purple.png" onclick="select_shelf(this.id)" type="button" class="shelf-btn btn m-2 w-100 rounded-0 border border-dark" role="button"><img src="shelf-images/shelf-purple.png" class="w-75"/></button>
+            </div>
+            <div class="col-2">
+                <button id="shelf-images/shelf-yellow.png" onclick="select_shelf(this.id)" type="button" class="shelf-btn btn m-2 w-100 rounded-0 border border-dark" role="button"><img src="shelf-images/shelf-yellow.png" class="w-75"/></button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        function select_shelf(img_path) {
+          var img = img_path;
+          document.getElementById("chosen-shelf").src = img;
+          localStorage.setItem("chosen_shelf", img);
+
+          document.getElementById("continue-btn").style.visibility = 'visible';
+        }
+    </script>
+</body>
+</html>

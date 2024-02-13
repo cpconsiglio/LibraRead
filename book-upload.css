@@ -1,0 +1,26 @@
+.continue-btn {
+    background-color: #0d113d;
+    color: white;
+    font-family: 'Courier', Courier, monospace;
+    font-weight: normal;
+}
+
+.continue-btn:hover {
+    background-color: #2270d6;
+    color: black;
+}
+
+.instruction {
+    color: gray;
+    text-align: left;
+}
+
+.add-book-btn {
+    background-color: #0d113d;
+    color: white;
+}
+
+.add-book-btn:hover {
+    background-color: #2270d6;
+    color: black;
+}
