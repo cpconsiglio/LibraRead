@@ -17,30 +17,30 @@
             <div class="col-8">
                 <div class="row justify-content-center">
                     <h1 class="py-5">Physical Book Entry</h1>
-                    <form class="w-75">
+                    <form class="w-75" id="addBook">
                         <div class="form-group">
                             <h3 class="py-2"><label for="title">Title</label></h3>
                             <input type="text" class="form-control" id="title" placeholder="Example input">
                             <h3 class="py-2"><label for="pages">Pages</label></h3>
-                            <input type="text" class="form-control" id="pages" placeholder="Example input">
+                            <input type="number" class="form-control" id="pages" placeholder="Example input">
                             <h3 class="py-2"><label for="author">Author</label></h3>
                             <input type="text" class="form-control" id="author" placeholder="Example input">
                             <h3 class="py-2"><label for="color">Color</label></h3>
                             <input type="color" class="form-control form-control-color" id="color" value="#563d7c" title="Choose your color">
                             <h3 class="py-2"><label for="formFile" class="form-label">Select any PDF, Ebook, or EPUB file</label></h3>
                             <input class="form-control" type="file" id="formFile">
+                            <button type="submit" class="add-book-btn btn m-2 border border-dark mt-4" role="button">Add Book</button>
                         </div>
                     </form>
                 </div>
-                <button type="submit" class="add-book-btn btn m-2 border border-dark" role="button">Add Book</button>
             </div>
-            <div class="col-4">
+            <div class="col-4 " id="addedBooks">
                 <h1 class="py-5">Currently Entered Books</h1>
             </div>
         </div>
         <div class="row pt-5">
             <div class="col">
-                <a id="continue-btn" type="button" class="continue-btn btn border border-dark" href="/book-upload.html" role="button"><h2>Continue</h2></a>
+                <a id="continue-btn" type="button" class="continue-btn btn border mb-4 border-dark" href="/book-upload.html" role="button" onclick="continueWithBooks()"><h2>Continue</h2></a>
             </div>
         </div>
     </div>
@@ -48,6 +48,69 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
         var shelf = localStorage.getItem("chosen_shelf");
+
+        const bookList = [];
+
+        var addBookForm = document.getElementById("addBook");
+
+        addBookForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let title = document.getElementById("title");
+            let pages = document.getElementById("pages");
+            let author = document.getElementById("author");
+            let color = document.getElementById("color");
+            
+            if (title.value == "" || pages.value == 0 || author.value == "") {
+                alert("Ensure you input a value in all fields");
+            } else {
+                // perform operation with form input
+                alert("Book Added");
+                console.log(
+                `Book ${title.value} has been added`
+                );
+
+                let bookListIndex = bookList.push([title.value, pages.value, author.value, color.value]);
+                console.log(bookListIndex);
+
+                document.getElementById("addedBooks").innerHTML +=
+                `<h4 class="text-secondary text-left" id="${bookListIndex}">
+                    - ${bookList[bookListIndex-1][0]} - <button type="" class="btn delete-book-btn border border-dark m-1" onclick="deleteBook(${bookListIndex})" role="button">X</button>
+                </h4>`;
+                
+                title.value = "";
+                pages.value = 0;
+                author.value = "";
+            }
+        });
+
+        function continueWithBooks(){
+            localStorage.setItem("bookList", JSON.stringify(bookList));
+        }
+
+        //window.onload = deleteBook;
+        function deleteBook(bookTitle){
+            let bookDeleted = false;
+            for (let i = 0; i < bookList.length; i++) {
+                console.log(bookList[i][0]);
+                if(bookList[i][0] === bookList[bookTitle-1][0]){
+                    let deleteButton = document.getElementById(bookTitle);
+                    deleteButton.parentNode.removeChild(deleteButton);
+                    console.log("Button Deleted");
+                    bookList.splice(bookList[i], 1);
+                    console.log("Array Entry Deleted");
+                    bookDeleted = true;
+                }
+                if(bookDeleted){
+                    //let origID = document.getElementById(i).id
+                    document.getElementById(i).id = i;
+                }
+            }
+            console.log("Remaining Titles:")
+            for (let i = 0; i < bookList.length; i++) {
+                console.log(bookList[i]);
+            }
+        }
     </script>
 </body>
 </html>
