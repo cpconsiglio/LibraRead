@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="library.css">
+</head>
+<body>
+    <nav class="navbar justify-content-between">
+        <a class="navbar-brand p-3">LibraRead</a>
+      </nav>
+    <div id="room" class="container-fluid text-center room">
+        <div id="shelf-div" style="position: relative">
+            <img class="img m-5" id="shelf-img" src="">
+        </div>
+    </div>
+
+    <script>
+        var shelf = localStorage.getItem("chosen_shelf");
+        const books = JSON.parse(localStorage.getItem("bookList"));
+
+        //Used for adjusting book size based on pages
+        let smallCap = 200;
+        let mediumCap = 400;
+
+        let totalWidth = 0;
+        //Iterate over book list, creating a rectangle for each book with a width relative to their amounts of pages
+        for (let i = 0; i < books.length; i++) {
+            console.log("Loop");
+            let width = 0;
+            if(books[i][1] < 200){
+                width = 1;
+            }
+            else if(books[i][1] < 500){
+                width = 2;
+            }
+            else{
+                width = 3;
+            }
+            width = width*18;
+            document.getElementById("shelf-div").innerHTML += `<a class="book" href="/book.html" id="${books[i][0]}" onclick="setCurBook('${books[i][0]}')"><div class="book-text">${books[i][0]}</div></a>`;
+            document.getElementById(books[i][0]).style.width = width + "px";
+            document.getElementById(books[i][0]).style.backgroundColor = books[i][3];
+            document.getElementById(books[i][0]).style.left = 777 + totalWidth + "px";
+            totalWidth += width;
+
+            var bookColorCode = books[i][3].substring(1);      // strip #
+            var rgb = parseInt(bookColorCode, 16);   // convert rrggbb to decimal
+            var r = (rgb >> 16) & 0xff;  // extract red
+            var g = (rgb >>  8) & 0xff;  // extract green
+            var b = (rgb >>  0) & 0xff;  // extract blue
+
+            var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+
+            if (luma < 40) {
+                document.getElementById(books[i][0]).style.color = "white";
+            }
+            else{
+                document.getElementById(books[i][0]).style.color = "black";
+            }
+        }
+
+        function setCurBook(bookTitle){
+            localStorage.setItem("currentBook", bookTitle);
+        }
+
+        document.getElementById("shelf-img").src = shelf;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+body {
+    background-color: gray;
+}
+
+.navbar {
+    background-color: #151942;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 200%;
+    font-family: 'Courier', Courier, monospace;
+    font-weight: normal;
+}
+.room {
+    background-image: url("room-images/mainRoom.png");
+    height: 780px;
+}
+
+.book {
+    height: 70px; 
+    position: absolute; 
+    top: 12.5%;
+}
+
+.book-text {
+    writing-mode: vertical-rl; 
+    text-orientation: mixed; 
+    padding-top: 2px; 
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 70px;
+}
+
+a:link { 
+    text-decoration: none; 
+  } 
+  a:visited { 
+    text-decoration: none; 
+  } 
+  a:hover { 
+    text-decoration: none; 
+  } 
+  a:active { 
+    text-decoration: none; 
+  }
+
+#shelf {
+    position: relative;
+}
