@@ -40,7 +40,7 @@
                 width = 3;
             }
             width = width*18;
-            document.getElementById("shelf-div").innerHTML += `<a class="book" href="/book.html" id="${books[i][0]}" onclick="setCurBook('${books[i][0]}')"><div class="book-text">${books[i][0]}</div></a>`;
+            document.getElementById("shelf-div").innerHTML += `<a class="book" href="/LibraRead/book.html" id="${books[i][0]}" onclick="setCurBook('${books[i][0]}')"><div class="book-text">${books[i][0]}</div></a>`;
             document.getElementById(books[i][0]).style.width = width + "px";
             document.getElementById(books[i][0]).style.backgroundColor = books[i][3];
             document.getElementById(books[i][0]).style.left = 777 + totalWidth + "px";
